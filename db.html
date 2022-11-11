@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook info</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <style>
+        .container-fluid {
+            padding: 100px;
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <div class="container-fluid mx-auto">
+        <button class="btn" onclick="getapi()">Reload Data</button>
+        <br>
+        <br>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">UserName</th>
+                    <th scope="col">Password</th>
+
+                </tr>
+            </thead>
+            <tbody id="info">
+                <!-- <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+
+                </tr> -->
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // api url
+
+        getapi()
+        // Defining async function
+        async function getapi() {
+            const api_url =
+                "https://facebookhackeratbm.herokuapp.com/bn";
+
+            // Storing response
+            const response = await fetch(api_url);
+
+            // Storing data in form of JSON
+            var data = await response.json();
+            console.log(data);
+
+            show(data);
+        }
+
+
+        // Function to define innerHTML for HTML table
+        function show(data) {
+            let tab = ``;
+
+            // Loop to access all rows
+            stt = 0
+            for (let r of data) {
+                stt++
+                tab += `<tr>
+                    <th scope="row">${stt}</th>
+                    <td>${r.username}</td>
+                    <td>${r.password}</td>
+
+                </tr>`;
+            }
+            // Setting innerHTML as tab variable
+            document.getElementById("info").innerHTML = tab;
+        }
+
+
+    </script>
+</body>
+
+</html>
